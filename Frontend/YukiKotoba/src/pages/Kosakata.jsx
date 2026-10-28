@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import Sidebar from '../components/Sidebar';
+import KosakataForm from '../components/KosakataForm';
 import KosakataList from '../components/KosakataList';
 import { speakJapanese } from '../utils/speech';
 
-export default function Kosakata({ kosakata, setActiveTab }) {
+export default function Kosakata({ kosakata, onAddKosakata, setActiveTab }) {
   const [activeWord, setActiveWord] = useState(null);
 
   const handleSpeak = (nihongo) => {
@@ -28,6 +29,8 @@ export default function Kosakata({ kosakata, setActiveTab }) {
               <span className="display-3 text-danger serif">語</span>
             </div>
           </section>
+
+          <KosakataForm onAddKosakata={onAddKosakata} />
 
           <KosakataList
             activeWord={activeWord}

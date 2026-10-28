@@ -24,7 +24,14 @@ function App() {
     return localStorage.getItem('yuki-theme') || 'light';
   });
   const [activeTab, setActiveTab] = useState('peta');
-  const [kosakata] = useState(initialKosakata);
+  const [kosakata, setKosakata] = useState(initialKosakata);
+
+  const handleAddKosakata = (item) => {
+    setKosakata((currentKosakata) => [
+      ...currentKosakata,
+      { ...item, id: crypto.randomUUID() },
+    ]);
+  };
 
   useEffect(() => {
     document.documentElement.setAttribute('data-bs-theme', theme);
@@ -52,7 +59,11 @@ function App() {
         {activeTab === 'katakana' && <Katakana setActiveTab={setActiveTab} />}
         {activeTab === 'kanji' && <Kanji setActiveTab={setActiveTab} />}
         {activeTab === 'kosakata' && (
-          <Kosakata kosakata={kosakata} setActiveTab={setActiveTab} />
+          <Kosakata
+            kosakata={kosakata}
+            onAddKosakata={handleAddKosakata}
+            setActiveTab={setActiveTab}
+          />
         )}
         {activeTab === 'lencana' && <Lencana setActiveTab={setActiveTab} />}
         {activeTab === 'belajar' && <Belajar setActiveTab={setActiveTab} />}

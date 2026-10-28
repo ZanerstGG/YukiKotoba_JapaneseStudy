@@ -9,12 +9,22 @@ import Kanji from './pages/Kanji';
 import Kosakata from './pages/Kosakata';
 import Lencana from './pages/Lencana';
 import Belajar from './pages/Belajar';
+import { kosakataCategories } from './data/kosakataData';
+
+const initialKosakata = kosakataCategories.flatMap(({ category, items }) =>
+  items.map((item, index) => ({
+    ...item,
+    category,
+    id: `${category}-${item.romaji}-${index}`,
+  })),
+);
 
 function App() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('yuki-theme') || 'light';
   });
   const [activeTab, setActiveTab] = useState('peta');
+  const [kosakata] = useState(initialKosakata);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-bs-theme', theme);
@@ -41,7 +51,9 @@ function App() {
         {activeTab === 'hiragana' && <Hiragana setActiveTab={setActiveTab} />}
         {activeTab === 'katakana' && <Katakana setActiveTab={setActiveTab} />}
         {activeTab === 'kanji' && <Kanji setActiveTab={setActiveTab} />}
-        {activeTab === 'kosakata' && <Kosakata setActiveTab={setActiveTab} />}
+        {activeTab === 'kosakata' && (
+          <Kosakata kosakata={kosakata} setActiveTab={setActiveTab} />
+        )}
         {activeTab === 'lencana' && <Lencana setActiveTab={setActiveTab} />}
         {activeTab === 'belajar' && <Belajar setActiveTab={setActiveTab} />}
       </div>

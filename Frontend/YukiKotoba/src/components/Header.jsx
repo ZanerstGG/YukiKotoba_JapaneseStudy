@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Header({ activeTab, setActiveTab, theme, setTheme }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,12 +35,12 @@ export default function Header({ activeTab, setActiveTab, theme, setTheme }) {
           className="logo-link d-flex align-items-center gap-2 text-decoration-none text-body border-0 bg-transparent p-0"
           style={{ textAlign: 'left' }}
         >
-          <span className="logo-stamp fw-bold fs-4 lh-1 shadow-sm">
-            雪
+          <span className="logo-stamp fw-bold fs-6 lh-1 shadow-sm" aria-hidden="true">
+            YK
           </span>
           <span className="d-flex flex-column lh-sm">
-            <span className="fw-bold fs-4">Yuki</span>
-            <span className="small text-body-secondary">Belajar Bahasa Jepang</span>
+            <span className="fw-bold fs-4">YukiKotoba</span>
+            <span className="small text-body-secondary">Ruang Belajar Bahasa Jepang</span>
           </span>
         </button>
 
@@ -51,7 +51,7 @@ export default function Header({ activeTab, setActiveTab, theme, setTheme }) {
           aria-label="Ganti tema"
           title={`Ganti ke tema ${theme === 'dark' ? 'terang' : 'gelap'}`}
         >
-          <i className={`bi bi-${theme === 'dark' ? 'sun-fill text-warning' : 'moon-stars-fill'}`}></i>
+          <i className={`bi bi-${theme === 'dark' ? 'sun-fill text-warning' : 'moon-stars-fill'}`} />
           <span className="small d-none d-sm-inline">{theme === 'dark' ? 'Light' : 'Dark'}</span>
         </button>
       </div>
@@ -69,7 +69,7 @@ export default function Header({ activeTab, setActiveTab, theme, setTheme }) {
                     isActive ? 'active bg-danger text-white' : 'text-body'
                   }`}
                 >
-                  {item.icon && <i className={`bi ${item.icon} me-1`} aria-hidden="true"></i>}
+                  {item.icon && <i className={`bi ${item.icon} me-1`} aria-hidden="true" />}
                   {item.label}
                 </button>
               </li>
